@@ -32,6 +32,9 @@ export default {
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
+  router: {
+    middleware:['auth']
+  },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -41,7 +44,46 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
+
+  auth: {
+    redirect: {
+      login: '/',
+      logout: '/',
+      home: '/',
+      callback: '/'
+    },
+    localStorage: false,
+    resetOnError: true,
+    strategies: {
+      local: {
+        cookie: false,
+        user: {
+          property: user
+        },
+        token: {
+          property: 'token',
+          required: true
+        },
+        endpoints: {
+          login: {
+            url: '/user/login',
+            method: 'post'
+          },
+          user: false
+        },
+        rewriteRedirects: true,
+        fullPathRedirect: true
+      }
+    }
+  },
+
+  axios :{
+    baseURL: process.env.API,
+  },
+  
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
