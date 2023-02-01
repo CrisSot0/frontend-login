@@ -1,6 +1,6 @@
 <template>
     <v-card class="cardLogin">
-        <v-card-title class="title">Bienvenido!!!</v-card-title>
+        <v-card-title class="title">Bienvenidos</v-card-title>
         <v-card-text>
             <v-row justify="center" align="center">
                 <v-col cols="4" align-self="center">
@@ -8,19 +8,20 @@
                 </v-col>
                 <v-col cols="8" align-self="center">
                     <v-form ref="formLogin">
-                    <v-text-field label="Ingresa tu correo electronico" 
-                              placeholder="ejemplo: hola@outlook.com"
+                <v-text-field label="Correo Electronico" 
+                              placeholder="Correo Electronico"
                               v-model="correoElectronico"
                               :rules="validarCorreo"
-                    />
-                    <v-text-field label="Ingresa tu contraseña" 
-                              placeholder="ejemplo: 12345678"
+                />
+                <v-text-field label="Password" 
+                              placeholder="Password"
                               v-model="password"
                               :rules="validarPassword"
-                    />
-                    </v-form>
+                />
+            </v-form>
                 </v-col>
             </v-row>
+            
         </v-card-text>
         <v-card-actions>
             <v-btn
@@ -29,7 +30,7 @@
             block
             @click="loginBackend"
             >
-                Login
+                Iniciar
             </v-btn>
         </v-card-actions>
     </v-card>
@@ -41,21 +42,34 @@ export default {
         return {
             correoElectronico: '',
             validarCorreo: [
-            v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'El email tiene que ser valido'
+            v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
             ],
-            password: '',
+            password:'',
             validarPassword: [
-                value => value.length >= 6 || 'Minimo 6 caracteres',
+                value => value.length >= 6 || 'Min 6 characters'
             ]
         }
     },
     methods: {
-        loginBackend () {
+        async loginBackend () {
             const valid = this.$refs.formLogin.validate()
-            if (valid){
-                alert('Presionaste el boton vale')
-            } else {
-                alert('No cumpliste las reglas')
+            if (valid) {
+                const sendData = {
+                    email: this.correoElectronico,
+                    password: this.password
+                }
+                await this.$auth.loginWith('local', {
+                    data: sendData
+                }).then(async (res) => {
+                    console.log('respuesta del back:', res)
+                    if (res.data.error == null) {
+                        this.$router.push('/dashboard')
+                    }
+                }).catch((error) => {
+                    console.log('error: ', error)
+                })
+            }else {
+                alert('no cumpliste las reglas')
             }
         }
     }
@@ -64,24 +78,23 @@ export default {
 
 <style scoped>
     .cardLogin{
-        background-color: #546E7A;
+        background-color: #51d1f6;
         border-radius: 10px;
         width: 500px;
         height: 300px;
-
     }
-    .imgLogin{
-        width:100%;
+    .imgLogin {
+        width: 100%;
         height: 100%;
     }
     .btnLogin{
-        color: white!important;
-        background-color: black!important;
+        background-color: #004173!important;
+        color: #FFFFFF;
     }
-    .title{
+    .title {
         font-size: 30px;
         justify-content: center;
-        color: whitesmoke;
+        color: #004173;
         font-weight: 700;
     }
 </style>

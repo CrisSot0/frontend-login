@@ -1,9 +1,11 @@
 <template>
-    <h1>Hola </h1>
+  <h1>hola</h1>
 </template>
 
 <script>
-export default{
-    layout: 'dashboard'
+export default {
+  auth: true,
+  layout: 'dashboard'
 }
 </script>
+  

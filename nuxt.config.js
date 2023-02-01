@@ -32,8 +32,9 @@ export default {
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
+
   router: {
-    middleware:['auth']
+    middleware: ['auth']
   },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -61,7 +62,7 @@ export default {
       local: {
         cookie: false,
         user: {
-          property: user
+          property: 'user'
         },
         token: {
           property: 'token',
@@ -80,10 +81,9 @@ export default {
     }
   },
 
-  axios :{
+  axios: {
     baseURL: process.env.API,
   },
-  
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
