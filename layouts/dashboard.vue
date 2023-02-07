@@ -9,10 +9,10 @@
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title class="text-h6">
-              AIDC
+              Cristiansillo
             </v-list-item-title>
             <v-list-item-subtitle>
-              Sistema
+              Sistema de CRUDOS
             </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>

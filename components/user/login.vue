@@ -4,7 +4,7 @@
         <v-card-text>
             <v-row justify="center" align="center">
                 <v-col cols="4" align-self="center">
-                    <img src="../../assets/images/perron.jpg" class="imgLogin">
+                    <img src="../../assets/images/pipipipi.jpg" class="imgLogin">
                 </v-col>
                 <v-col cols="8" align-self="center">
                     <v-form ref="formLogin">
@@ -78,7 +78,7 @@ export default {
 
 <style scoped>
     .cardLogin{
-        background-color: #51d1f6;
+        background-color: orange;
         border-radius: 10px;
         width: 500px;
         height: 300px;
@@ -88,13 +88,13 @@ export default {
         height: 100%;
     }
     .btnLogin{
-        background-color: #004173!important;
+        background-color: red!important;
         color: #FFFFFF;
     }
     .title {
         font-size: 30px;
         justify-content: center;
-        color: #004173;
+        color: red;
         font-weight: 700;
     }
 </style>
